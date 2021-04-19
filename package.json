@@ -11,8 +11,9 @@
   "dependencies": {
     "@firebase/firestore-types": "^2.2.0",
     "@vue/cli": "^4.5.12",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "firebase": "^8.3.2",
+    "firebase": "^8.4.1",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2"

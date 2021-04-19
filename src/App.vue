@@ -1,29 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div id = "header"> 
+    <h1> KLC Party Store </h1> 
+    </div>
+    <main-page></main-page>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import {FirebaseFirestore} from "@firebase/firestore-types";
+import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
+import MainPage from './components/MainPage.vue';
 
 @Component({
   components: {
-    HelloWorld,
+    MainPage,
   },
 })
 export default class App extends Vue {}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+#header {
+  font-family:  Georgia, serif;
+  font-size: 28px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: cornflowerblue;
   margin-top: 60px;
 }
 </style>
