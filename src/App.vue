@@ -1,20 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <h1> KLC Party Store </h1>
+    <img alt="Vuelogo" src="./assets/checkoutcart.png">
+    <Checkout/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+
+import Checkout from './components/Checkout.vue';
 
 @Component({
   components: {
-    HelloWorld,
+ 
+    Checkout
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+
+
+
+}
 </script>
 
 <style>
@@ -26,4 +33,14 @@ export default class App extends Vue {}
   color: #2c3e50;
   margin-top: 60px;
 }
+
+img{
+  width: 60px;
+  height:60px;
+}
+
+h1{
+color:cornflowerblue
+}
+
 </style>
