@@ -1,41 +1,43 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
     <div id = "header"> 
     <h1> KLC Party Store </h1> 
     </div>
+    <SignUpPage></SignUpPage>
+    <UserPage></UserPage>
     <main-page></main-page>
-=======
     <h1> KLC Party Store </h1>
     <img alt="Vuelogo" src="./assets/checkoutcart.png">
     <Checkout/>
->>>>>>> origin/laurasbranch
+    <button v-if="userLoggedIn()" @click="doLogout">Logout</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-<<<<<<< HEAD
 import {FirebaseFirestore} from "@firebase/firestore-types";
-import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
 import MainPage from './components/MainPage.vue';
-
-@Component({
-  components: {
-    MainPage,
-=======
-
+import LoginPage from './components/LoginPage.vue';
+import SignUpPage from './components/SignUpPage.vue';
 import Checkout from './components/Checkout.vue';
+import UserPage from './components/UserPage.vue'
+import {FirebaseAuth, UserCredential} from "@firebase/auth-types"; 
 
 @Component({
   components: {
- 
-    Checkout
->>>>>>> origin/laurasbranch
+    LoginPage, MainPage, Checkout, SignUpPage, UserPage
   },
 })
 export default class App extends Vue {
 
+  readonly $appAuth!: FirebaseAuth;
+  userLoggedIn(): boolean {
+    return this.$appAuth.currentUser?.uid !== undefined;
+  }
+  doLogout(): void {
+    this.$appAuth.signOut();
+    this.$router.back();    // Go backward in the "history stack"
+  }
 
 
 }

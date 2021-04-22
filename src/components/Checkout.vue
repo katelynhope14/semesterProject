@@ -156,6 +156,7 @@ import "firebase/auth";
 //BudgetCategory
 export default class MyExpense extends Vue {
   readonly $appDB!: FirebaseFirestore;
+  @Prop() userCart!: any[];
 
 //MAKE SURE TO CREATE UPDATE AND DELETE BUTTONS 
 //for shipping info

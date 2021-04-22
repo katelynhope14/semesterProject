@@ -19,9 +19,11 @@
             <td>{{tableCovers.object}}</td>
             <td>{{tableCovers.description}}</td>
             <br><select v-model="tablecoversButton">
-               <option v-for="(c, pos) in tableCovers.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[31].desc1}} - {{priceInfo[31].price1}}</option>
+               <option>{{priceInfo[31].desc2}} - {{priceInfo[31].price2}}</option>
+               <option>{{priceInfo[31].desc3}} - {{priceInfo[31].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(tableCovers.object, tableCovers.description, tablecoversButton)">Add Cart</button>
+            <button  class ="button" @click="addCart(tableCovers.object, tablecoversButton)">Add Cart</button>
           </tr>
 
           <!-- Plastic Plates -->
@@ -29,7 +31,9 @@
             <td>{{plasticPlate.object}}</td>
             <td>{{plasticPlate.description}}</td>
             <br><select v-model="plateButton">
-               <option v-for="(c, pos) in plasticPlate.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[25].desc1}} - {{priceInfo[25].price1}}</option>
+               <option>{{priceInfo[25].desc2}} - {{priceInfo[25].price2}}</option>
+               <option>{{priceInfo[25].desc3}} - {{priceInfo[25].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(plasticPlate.object, plasticPlate.description, plasticPlateButton)">Add Cart</button>
           </tr>
@@ -39,7 +43,9 @@
             <td>{{plasticCutlery.object}}</td>
             <td>{{plasticCutlery.description}}</td>
             <br><select v-model="cutleryButton">
-               <option v-for="(c, pos) in plasticCutlery.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[7].desc1}} - {{priceInfo[7].price1}}</option>
+               <option>{{priceInfo[7].desc2}} - {{priceInfo[7].price2}}</option>
+               <option>{{priceInfo[7].desc3}} - {{priceInfo[7].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(plasticCutlery.object, plasticCutlery.description, plasticCutleryButton)">Add Cart</button>
           </tr>
@@ -49,7 +55,9 @@
             <td>{{napkins.object}}</td>
             <td>{{napkins.description}}</td>
             <br><select v-model="napkinButton">
-               <option v-for="(c, pos) in napkins.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[17].desc1}} - {{priceInfo[17].price1}}</option>
+               <option>{{priceInfo[17].desc2}} - {{priceInfo[17].price2}}</option>
+               <option>{{priceInfo[17].desc3}} - {{priceInfo[17].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(napkins.object, napkins.description, napkinButton)">Add Cart</button>
           </tr>
@@ -59,7 +67,9 @@
             <td>{{drinkware.object}}</td>
             <td>{{drinkware.description}}</td>
             <br><select v-model="drinkwareButton">
-               <option v-for="(c, pos) in drinkware.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[9].desc1}} - {{priceInfo[9].price1}}</option>
+               <option>{{priceInfo[9].desc2}} - {{priceInfo[9].price2}}</option>
+               <option>{{priceInfo[9].desc3}} - {{priceInfo[9].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(drinkware.object, drinkware.description, drinkwareButton)">Add Cart</button>
           </tr>  
@@ -69,7 +79,9 @@
             <td>{{serveware.object}}</td>
             <td>{{serveware.description}}</td>
            <br><select v-model="servewareButton">
-               <option v-for="(c, pos) in serveware.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[27].desc1}} - {{priceInfo[27].price1}}</option>
+               <option>{{priceInfo[27].desc2}} - {{priceInfo[27].price2}}</option>
+               <option>{{priceInfo[27].desc3}} - {{priceInfo[27].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(serveware.object, serveware.description, servewareButton)">Add Cart</button>
           </tr> 
@@ -93,7 +105,9 @@
             <td>{{balloon.object}}</td>
             <td>{{balloon.description}}</td>
             <br><select v-model="balloonButton">
-               <option v-for="(c, pos) in balloon.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[3].desc1}} - {{priceInfo[3].price1}}</option>
+               <option>{{priceInfo[3].desc2}} - {{priceInfo[3].price2}}</option>
+               <option>{{priceInfo[3].desc3}} - {{priceInfo[3].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(balloon.object, balloon.description, balloonButton)">Add Cart</button>
           </tr> 
@@ -103,7 +117,9 @@
             <td>{{curtains.object}}</td>
             <td>{{curtains.description}}</td>
             <br><select v-model="curtainsButton">
-               <option v-for="(c, pos) in curtains.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[5].desc1}} - {{priceInfo[5].price1}}</option>
+               <option>{{priceInfo[5].desc2}} - {{priceInfo[5].price2}}</option>
+               <option>{{priceInfo[5].desc3}} - {{priceInfo[5].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(curtains.object, curtains.description, currtainsButton)">Add Cart</button>
           </tr> 
@@ -113,7 +129,9 @@
             <td>{{yard.object}}</td>
             <td>{{yard.description}}</td>
             <br><select v-model="yardButton">
-               <option v-for="(c, pos) in yard.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[33].desc1}} - {{priceInfo[33].price1}}</option>
+               <option>{{priceInfo[33].desc2}} - {{priceInfo[33].price2}}</option>
+               <option>{{priceInfo[33].desc3}} - {{priceInfo[33].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(yard.object, yard.description, yardButton)">Add Cart</button>
           </tr> 
@@ -123,7 +141,9 @@
             <td>{{photobooth.object}}</td>
             <td>{{photobooth.description}}</td>
             <br><select v-model="photoboothButton">
-               <option v-for="(c, pos) in photobooth.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[23].desc1}} - {{priceInfo[23].price1}}</option>
+               <option>{{priceInfo[23].desc2}} - {{priceInfo[23].price2}}</option>
+               <option>{{priceInfo[23].desc3}} - {{priceInfo[23].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(photobooth.object, photobooth.description, photoboothButton)">Add Cart</button>
           </tr> 
@@ -133,7 +153,9 @@
             <td>{{lights.object}}</td>
             <td>{{lights.description}}</td>
             <br><select v-model="lightsButton">
-               <option v-for="(c, pos) in lights.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[15].desc1}} - {{priceInfo[15].price1}}</option>
+               <option>{{priceInfo[15].desc2}} - {{priceInfo[15].price2}}</option>
+               <option>{{priceInfo[15].desc3}} - {{priceInfo[15].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(lights.object, lights.description, lightsButton)">Add Cart</button>
           </tr> 
@@ -156,7 +178,9 @@
             <td>{{noiseMakers.object}}</td>
             <td>{{noiseMakers.description}}</td>
             <br><select v-model="noiseMakersButton">
-               <option v-for="(c, pos) in noiseMakers.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[19].desc1}} - {{priceInfo[19].price1}}</option>
+               <option>{{priceInfo[19].desc2}} - {{priceInfo[19].price2}}</option>
+               <option>{{priceInfo[19].desc3}} - {{priceInfo[19].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(noiseMakers.object, noiseMakers.description, noiseMakersButton)">Add Cart</button>
           </tr> 
@@ -167,7 +191,9 @@
             <td>{{partyHats.object}}</td>
             <td>{{partyHats.description}}</td>
            <br><select v-model="partyHatsButton">
-               <option v-for="(c, pos) in partyHats.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[21].desc1}} - {{priceInfo[21].price1}}</option>
+               <option>{{priceInfo[21].desc2}} - {{priceInfo[21].price2}}</option>
+               <option>{{priceInfo[21].desc3}} - {{priceInfo[21].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(partyHats.object, partyHats.description, partyHatsButton)">Add Cart</button>
           </tr> 
@@ -177,7 +203,9 @@
             <td>{{awards.object}}</td>
             <td>{{awards.description}}</td>
             <br><select v-model="awardsButton">
-               <option v-for="(c, pos) in awards.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[1].desc1}} - {{priceInfo[1].price1}}</option>
+               <option>{{priceInfo[1].desc2}} - {{priceInfo[1].price2}}</option>
+               <option>{{priceInfo[1].desc3}} - {{priceInfo[1].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(awards.object, awards.description, awardsButton)">Add Cart</button>
           </tr> 
@@ -188,7 +216,9 @@
             <td>{{glowSticks.object}}</td>
             <td>{{glowSticks.description}}</td>
             <br><select v-model="glowSticksButton">
-               <option v-for="(c, pos) in glowSticks.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[11].desc1}} - {{priceInfo[11].price1}}</option>
+               <option>{{priceInfo[11].desc2}} - {{priceInfo[11].price2}}</option>
+               <option>{{priceInfo[11].desc3}} - {{priceInfo[11].price3}}</option>
             </select><br>
             <button class ="button" @click="addCart(glowSticks.object, glowSticks.description, glowSticksButton)">Add Cart</button>
           </tr> 
@@ -198,7 +228,9 @@
             <td>{{keychains.object}}</td>
             <td>{{keychains.description}}</td>
             <br><select v-model="keychainsButton">
-               <option v-for="(c, pos) in keychains.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[13].desc1}} - {{priceInfo[13].price1}}</option>
+               <option>{{priceInfo[13].desc2}} - {{priceInfo[13].price2}}</option>
+               <option>{{priceInfo[13].desc3}} - {{priceInfo[13].price3}}</option>
             </select><br>
            <button class ="button" @click="addCart(keychains.object, keychains.description, keychainsButton)">Add Cart</button>
           </tr> 
@@ -208,11 +240,14 @@
             <td>{{stickers.object}}</td>
             <td>{{stickers.description}}</td>
             <br><select v-model="stickersButton">
-               <option v-for="(c, pos) in stickers.quantity" :value="c[pos]" :key="pos">{{c}}</option>
+               <option>{{priceInfo[29].desc1}} - {{priceInfo[29].price1}}</option>
+               <option>{{priceInfo[29].desc2}} - {{priceInfo[29].price2}}</option>
+               <option>{{priceInfo[29].desc3}} - {{priceInfo[29].price3}}</option>
             </select><br>
            <button class ="button" @click="addCart(stickers.object, stickers.description, stickersButton)">Add Cart</button>
           </tr> 
         </table>
+        <router-link to="{name: 'Checkout', params:{userCart: cart}}" replace>CHECKOUT</router-link>
         </div>
       </section>
     </div>
@@ -222,8 +257,9 @@
 <script lang ="ts"> 
 import { Component, Vue } from 'vue-property-decorator';
 import {FirebaseFirestore} from "@firebase/firestore-types";
-import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
-import {FirebaseAuth, UserCredential} from "@firebase/auth-types"; 
+import {FirebaseAuth, UserCredential} from "@firebase/auth-types";
+import { QueryDocumentSnapshot } from "@firebase/firestore-types";
+import { QuerySnapshot } from "@firebase/firestore-types";
 
 @Component 
 export default class MainPage extends Vue {
@@ -246,6 +282,37 @@ export default class MainPage extends Vue {
   private glowSticksButton="";
   private keychainsButton="";
   private stickersButton=""; 
+  private uid = "none"
+  private priceInfo: any[] = [];
+  private cart: any[] = [];
+
+  noInput(input): boolean{
+      return input.length == 0;
+  }
+
+  mounted(): void {
+        //this.uid = this.$appAuth.currentUser?.uid ?? "none";
+
+        this.$appDB
+        .collection(`prices`)
+        .onSnapshot((qs: QuerySnapshot) => {
+        this.priceInfo.splice(0);  // remove old data
+        qs.forEach((qds: QueryDocumentSnapshot) => {
+            const data = qds.data();
+            if (qds.exists)
+                this.priceInfo.push(qds.id,{
+                desc1: data.desc1,
+                desc2: data.desc2,
+                desc3: data.desc3,
+                price1: data.price1,
+                price2: data.price2,
+                price3: data.price3
+            });
+        });
+        console.log(this.priceInfo);
+        console.log(this.priceInfo[0].toString());
+    });
+    }
 
   //Table Covers Function 
   readonly tableCovers = {
@@ -433,8 +500,14 @@ export default class MainPage extends Vue {
     ],
   };
 
- addCart(objectName: string, objectDescription: string, priceandquantity: string) {
-   console.log("stop");
+ addCart(name, desc) {
+   var fields = desc.split("-");
+   this.cart.push({
+     itemName: name,
+     itemDesc: fields[0],
+     itemPrice: parseFloat(fields[1])
+   });
+   console.log(this.cart[0].itemDesc);
   }
 }
 
@@ -497,6 +570,9 @@ td{
   text-decoration: bold;
   display: inline-block;
   font-size: 16px;
+}
+.price{
+  padding-left:20px;
 }
 
 </style>
