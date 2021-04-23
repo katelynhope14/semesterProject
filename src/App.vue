@@ -3,12 +3,8 @@
     <div id = "header"> 
     <h1> KLC Party Store </h1> 
     </div>
-    <SignUpPage></SignUpPage>
-    <UserPage></UserPage>
-    <main-page></main-page>
-    <h1> KLC Party Store </h1>
+    <router-view></router-view>
     <img alt="Vuelogo" src="./assets/checkoutcart.png">
-    <Checkout/>
     <button v-if="userLoggedIn()" @click="doLogout">Logout</button>
   </div>
 </template>
@@ -36,7 +32,7 @@ export default class App extends Vue {
   }
   doLogout(): void {
     this.$appAuth.signOut();
-    this.$router.back();    // Go backward in the "history stack"
+    this.$router.push("/");    // Go backward in the "history stack"
   }
 
 

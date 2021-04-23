@@ -10,15 +10,18 @@
           <thead>
             <th>Item Name</th>
             <th>Quantity</th>
-            <th>Tax</th>
-            <th>Total</th>
+            <th>Price</th>
           </thead>
           <tbody>
-            <tr v-for="(z, pos) in itemDetails" :key="pos">
-              <td>{{ z.name }}</td>
-              <td>${{ z.quantity }}</td>
-              <td>${{ z.tax }}</td>
-              <td>{{ z.total }}</td>
+            <tr v-for="(z, pos) in userCart" :key="pos">
+              <td>{{ z.itemName }}</td>
+              <td>${{ z.itemDesc }}</td>
+              <td>${{ z.itemPrice }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>Total: {{total.toFixed(2)}} </td>
             </tr>
           </tbody>
         </table>
@@ -156,7 +159,6 @@ import "firebase/auth";
 //BudgetCategory
 export default class MyExpense extends Vue {
   readonly $appDB!: FirebaseFirestore;
-  @Prop() userCart!: any[];
 
 //MAKE SURE TO CREATE UPDATE AND DELETE BUTTONS 
 //for shipping info
@@ -172,18 +174,17 @@ private cardinfo="";
 private expdate="";
 private securitycode= "";
 private phonenumber= "";
-
-
-
+private userCart:any[] = [];
 private itemDetails: any [] = [];
-  private allExpenses: any[] = [];
-  private allCategories: any[] = [];
-  private expenseByCategory: any[] = [];
-
-  groupedTotal = new Map<string, number>();
+private docIDs: any[] = [];
+private itemString = "";
+private address = "";
+private card = "";
+private total = 0;
 
   readonly $appAuth!: FirebaseAuth;
   private uid = "none";
+  private userDocID = "";
 
   //adding the expenses of current user
   
@@ -193,84 +194,52 @@ private itemDetails: any [] = [];
   //adding just the name and limit of the current user
   mounted(): void {
     this.uid = this.$appAuth.currentUser?.uid ?? "none";
+    setTimeout(() => {  console.log("World!"); }, 2000);
+
     this.$appDB
-
-      //grabs our provided categories and LISTS them
-      .collection(`users/${this.uid}/categories`)
-      .orderBy("name") // Sort by category date
-      .onSnapshot((qs: QuerySnapshot) => {
-        this.allCategories.splice(0); // remove old data
+        .collection(`users/${this.uid}/cart`)
+        .onSnapshot((qs: QuerySnapshot) => {
+        this.userCart.splice(0);  // remove old data
         qs.forEach((qds: QueryDocumentSnapshot) => {
-          if (qds.exists) {
-            var catData = qds.data();
-            this.allCategories.push({
-              name: catData.name,
-              limit: catData.monthlyLimit,
+            const data = qds.data();
+            this.docIDs.push(qds.id);
+            if (qds.exists)
+                this.userCart.push({
+                  itemName: data.name,
+                  itemDesc: data.desc,
+                  itemPrice: parseFloat(data.price)
             });
-          }
+            console.log(this.userCart);
+            this.total = this.total + parseFloat(data.price) + parseFloat(data.price) * 0.06 ;
         });
-      });
+    });
+  }
 
-    //odering by date for user expenses
+
+  saveInfo(firstname, lastname, streetaddress, cityname, statename, zipcodenum, cardinfo, expdate, securitycode, phonenumber): void{
+    this.uid = this.$appAuth.currentUser?.uid ?? "none";
+    this.docIDs.forEach((id) => {
+      this.$appDB.collection(`users/${this.uid}/cart`).doc(id).delete();
+    })
+    this.userCart.forEach((item) => {
+      this.itemString = this.itemString + item.itemName + " - " + item.itemDesc + "\n";
+    })
+    this.address = firstname + " " + lastname + "\n" + streetaddress + "\n" + cityname + ", " + statename + ", " + zipcodenum;
+    this.card = "**** **** **** " + cardinfo.substring(12);
+
     this.$appDB
-      .collection(`users/${this.uid}/expenses`)
-      .orderBy("date") // Sort by category name
-      .onSnapshot((qs: QuerySnapshot) => {
-        this.allExpenses.splice(0); // remove old data
-        qs.forEach((qds: QueryDocumentSnapshot) => {
-          if (qds.exists) {
-            var catData = qds.data();
-            this.allExpenses.push({
-              amount: catData.amount,
-              date: catData.date,
-              category: catData.category,
-              where: catData.where,
-
-              city: catData.city,
-              state: catData.state,
-              zipcode: catData.zipcode
+        .collection(`users/${this.uid}/orders`)
+        .add({
+          name: this.itemString,
+          address: this.address,
+          card: this.card,
+          price: this.total})
+    this.docIDs.splice(0);
+    this.userCart.splice(0);
+    this.total = 0;
+    this.$router.push("/user");
 
 
-            });
-          }
-        });
-
-        // code for grouped total
-        this.allExpenses.forEach((ex: any) => {
-          const { category, amount } = ex;
-          console.log(category);
-          if (this.groupedTotal.has(category)) {
-            const oldTotal = this.groupedTotal.get(category) as number;
-            this.groupedTotal.set(category, oldTotal + amount);
-          } else {
-            this.groupedTotal.set(category, amount);
-          }
-        });
-
-        //if statments for over budget or okay budget
-        this.expenseByCategory.splice(0);
-
-        this.groupedTotal.forEach((spTotal: number, spCat: string) => {
-          const pos = this.allCategories.findIndex(
-            (d: any) => d.name === spCat
-          );
-          if (spTotal > this.allCategories[pos].limit) {
-            this.expenseByCategory.push({
-              category: spCat,
-              amount: spTotal,
-              limit: this.allCategories[pos].limit,
-              status: "over budget",
-            });
-          } else if (spTotal <= this.allCategories[pos].limit) {
-            this.expenseByCategory.push({
-              category: spCat,
-              amount: spTotal,
-              limit: this.allCategories[pos].limit,
-              status: "ok",
-            });
-          }
-        });
-      });
   }
 }
 </script>

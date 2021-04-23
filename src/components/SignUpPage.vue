@@ -65,6 +65,7 @@ export default class SignUpPage extends Vue {
     .createUserWithEmailAndPassword(this.userEmail, this.userPswd)
     .then((u) => {
       this.showMessage(`User create UID ${u.user?.uid}`);
+      this.uid = this.$appAuth.currentUser?.uid ?? "none";
       this.$appDB
         .collection(`users/${this.uid}/userdata`)
         .add({
@@ -72,7 +73,7 @@ export default class SignUpPage extends Vue {
           lname: this.lName,
           phone: this.userPhone,
           email: this.userEmail})
-      //this.$router.push({ name: "UserPage" });
+      this.$router.push("/user");
     })
     .catch((err: any) => {
       console.log(err);

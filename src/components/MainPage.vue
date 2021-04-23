@@ -1,5 +1,6 @@
 <template>
 <div>
+  <h2><router-link to="/user" replace>View or Change Personal Details</router-link> </h2>
     <!-- MAIN PAGE THAT SHOWS THE LIST OF PRODUCTS THAT WE ARE SELLING --> 
     <div id = "body"> 
 
@@ -23,7 +24,7 @@
                <option>{{priceInfo[31].desc2}} - {{priceInfo[31].price2}}</option>
                <option>{{priceInfo[31].desc3}} - {{priceInfo[31].price3}}</option>
             </select><br>
-            <button  class ="button" @click="addCart(tableCovers.object, tablecoversButton)">Add Cart</button>
+            <button  :disabled="!tablecoversButton" class ="button" @click="addCart(tableCovers.object, tablecoversButton)">Add Cart</button>
           </tr>
 
           <!-- Plastic Plates -->
@@ -35,7 +36,7 @@
                <option>{{priceInfo[25].desc2}} - {{priceInfo[25].price2}}</option>
                <option>{{priceInfo[25].desc3}} - {{priceInfo[25].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(plasticPlate.object, plasticPlate.description, plasticPlateButton)">Add Cart</button>
+            <button :disabled="!plateButton" class ="button" @click="addCart(plasticPlate.object, plateButton)">Add Cart</button>
           </tr>
 
           <!-- Plastic Plates -->
@@ -47,7 +48,7 @@
                <option>{{priceInfo[7].desc2}} - {{priceInfo[7].price2}}</option>
                <option>{{priceInfo[7].desc3}} - {{priceInfo[7].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(plasticCutlery.object, plasticCutlery.description, plasticCutleryButton)">Add Cart</button>
+            <button :disabled="!cutleryButton" class ="button" @click="addCart(plasticCutlery.object, cutleryButton)">Add Cart</button>
           </tr>
 
           <!-- Napkins-->
@@ -59,7 +60,7 @@
                <option>{{priceInfo[17].desc2}} - {{priceInfo[17].price2}}</option>
                <option>{{priceInfo[17].desc3}} - {{priceInfo[17].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(napkins.object, napkins.description, napkinButton)">Add Cart</button>
+            <button :disabled="!napkinButton" class ="button" @click="addCart(napkins.object, napkinButton)">Add Cart</button>
           </tr>
 
           <!--Drinkware-->
@@ -71,7 +72,7 @@
                <option>{{priceInfo[9].desc2}} - {{priceInfo[9].price2}}</option>
                <option>{{priceInfo[9].desc3}} - {{priceInfo[9].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(drinkware.object, drinkware.description, drinkwareButton)">Add Cart</button>
+            <button :disabled="!drinkwareButton" class ="button" @click="addCart(drinkware.object, drinkwareButton)">Add Cart</button>
           </tr>  
 
           <!--Serveware-->
@@ -83,7 +84,7 @@
                <option>{{priceInfo[27].desc2}} - {{priceInfo[27].price2}}</option>
                <option>{{priceInfo[27].desc3}} - {{priceInfo[27].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(serveware.object, serveware.description, servewareButton)">Add Cart</button>
+            <button :disabled="!servewareButton" class ="button" @click="addCart(serveware.object, servewareButton)">Add Cart</button>
           </tr> 
           </table>
          </div>  
@@ -109,7 +110,7 @@
                <option>{{priceInfo[3].desc2}} - {{priceInfo[3].price2}}</option>
                <option>{{priceInfo[3].desc3}} - {{priceInfo[3].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(balloon.object, balloon.description, balloonButton)">Add Cart</button>
+            <button :disabled="!balloonButton" class ="button" @click="addCart(balloon.object, balloonButton)">Add Cart</button>
           </tr> 
 
           <!--Doorway Curtains-->            
@@ -121,7 +122,7 @@
                <option>{{priceInfo[5].desc2}} - {{priceInfo[5].price2}}</option>
                <option>{{priceInfo[5].desc3}} - {{priceInfo[5].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(curtains.object, curtains.description, currtainsButton)">Add Cart</button>
+            <button :disabled="!curtainsButton" class ="button" @click="addCart(curtains.object, curtainsButton)">Add Cart</button>
           </tr> 
 
           <!--Yard Decorations -->            
@@ -133,7 +134,7 @@
                <option>{{priceInfo[33].desc2}} - {{priceInfo[33].price2}}</option>
                <option>{{priceInfo[33].desc3}} - {{priceInfo[33].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(yard.object, yard.description, yardButton)">Add Cart</button>
+            <button :disabled="!yardButton" class ="button" @click="addCart(yard.object, yardButton)">Add Cart</button>
           </tr> 
 
           <!--Photobooth Props-->            
@@ -145,7 +146,7 @@
                <option>{{priceInfo[23].desc2}} - {{priceInfo[23].price2}}</option>
                <option>{{priceInfo[23].desc3}} - {{priceInfo[23].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(photobooth.object, photobooth.description, photoboothButton)">Add Cart</button>
+            <button :disabled="!photoboothButton" class ="button" @click="addCart(photobooth.object, photoboothButton)">Add Cart</button>
           </tr> 
 
           <!--Party Lights-->            
@@ -157,7 +158,7 @@
                <option>{{priceInfo[15].desc2}} - {{priceInfo[15].price2}}</option>
                <option>{{priceInfo[15].desc3}} - {{priceInfo[15].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(lights.object, lights.description, lightsButton)">Add Cart</button>
+            <button :disabled="!lightsButton" class ="button" @click="addCart(lights.object, lightsButton)">Add Cart</button>
           </tr> 
         </table> 
         </div>
@@ -182,7 +183,7 @@
                <option>{{priceInfo[19].desc2}} - {{priceInfo[19].price2}}</option>
                <option>{{priceInfo[19].desc3}} - {{priceInfo[19].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(noiseMakers.object, noiseMakers.description, noiseMakersButton)">Add Cart</button>
+            <button :disabled="!noiseMakersButton" class ="button" @click="addCart(noiseMakers.object, noiseMakersButton)">Add Cart</button>
           </tr> 
          
 
@@ -195,7 +196,7 @@
                <option>{{priceInfo[21].desc2}} - {{priceInfo[21].price2}}</option>
                <option>{{priceInfo[21].desc3}} - {{priceInfo[21].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(partyHats.object, partyHats.description, partyHatsButton)">Add Cart</button>
+            <button :disabled="!partyHatsButton" class ="button" @click="addCart(partyHats.object, partyHatsButton)">Add Cart</button>
           </tr> 
 
           <!--Awards and Medals -->            
@@ -207,7 +208,7 @@
                <option>{{priceInfo[1].desc2}} - {{priceInfo[1].price2}}</option>
                <option>{{priceInfo[1].desc3}} - {{priceInfo[1].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(awards.object, awards.description, awardsButton)">Add Cart</button>
+            <button :disabled="!awardsButton" class ="button" @click="addCart(awards.object, awardsButton)">Add Cart</button>
           </tr> 
 
 
@@ -220,7 +221,7 @@
                <option>{{priceInfo[11].desc2}} - {{priceInfo[11].price2}}</option>
                <option>{{priceInfo[11].desc3}} - {{priceInfo[11].price3}}</option>
             </select><br>
-            <button class ="button" @click="addCart(glowSticks.object, glowSticks.description, glowSticksButton)">Add Cart</button>
+            <button :disabled="!glowSticksButton" class ="button" @click="addCart(glowSticks.object, glowSticksButton)">Add Cart</button>
           </tr> 
 
           <!--keychains -->            
@@ -232,7 +233,7 @@
                <option>{{priceInfo[13].desc2}} - {{priceInfo[13].price2}}</option>
                <option>{{priceInfo[13].desc3}} - {{priceInfo[13].price3}}</option>
             </select><br>
-           <button class ="button" @click="addCart(keychains.object, keychains.description, keychainsButton)">Add Cart</button>
+           <button :disabled="!keychainsButton" class ="button" @click="addCart(keychains.object, keychainsButton)">Add Cart</button>
           </tr> 
 
           <!--stickers-->            
@@ -244,10 +245,35 @@
                <option>{{priceInfo[29].desc2}} - {{priceInfo[29].price2}}</option>
                <option>{{priceInfo[29].desc3}} - {{priceInfo[29].price3}}</option>
             </select><br>
-           <button class ="button" @click="addCart(stickers.object, stickers.description, stickersButton)">Add Cart</button>
+           <button :disabled="!stickersButton" class ="button" @click="addCart(stickers.object, stickersButton)">Add Cart</button>
           </tr> 
         </table>
-        <router-link to="{name: 'Checkout', params:{userCart: cart}}" replace>CHECKOUT</router-link>
+        <section id="summary">
+        <h2>Order Summary</h2>
+        <table class="center-of-page">
+          <thead>
+            <th>Item Name</th>
+            <th>Description</th>
+            <th>Tax</th>
+            <th>Price</th>
+          </thead>
+          <tbody>
+            <tr v-for="(z, pos) in cart" :key="pos">
+              <td>{{ z.itemName }}</td>
+              <td>{{ z.itemDesc }}</td>
+              <td>${{ (z.itemPrice * 0.06).toFixed(2) }}</td>
+              <td>${{ z.itemPrice }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total: ${{total.toFixed(2)}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+        <button @click="checkout">Check Out</button>
         </div>
       </section>
     </div>
@@ -264,6 +290,7 @@ import { QuerySnapshot } from "@firebase/firestore-types";
 @Component 
 export default class MainPage extends Vue {
   readonly $appDB!: FirebaseFirestore
+  readonly $appAuth!: FirebaseAuth;
   
   private tablecoversButton = "";
   private plateButton="";
@@ -285,13 +312,30 @@ export default class MainPage extends Vue {
   private uid = "none"
   private priceInfo: any[] = [];
   private cart: any[] = [];
+  private total = 0;
+
 
   noInput(input): boolean{
-      return input.length == 0;
+    return input.length == 0;
+  }
+
+  checkout(): void {
+    this.uid = this.$appAuth.currentUser?.uid ?? "none";
+    this.cart.forEach((item) => {
+      this.$appDB
+        .collection(`users/${this.uid}/cart`)
+        .add({
+          name: item.itemName,
+          desc: item.itemDesc,
+          price: parseFloat(item.itemPrice)})
+
+    });
+    this.cart.splice(0);
+    this.$router.push("/checkout");
   }
 
   mounted(): void {
-        //this.uid = this.$appAuth.currentUser?.uid ?? "none";
+        this.uid = this.$appAuth.currentUser?.uid ?? "none";
 
         this.$appDB
         .collection(`prices`)
@@ -507,7 +551,7 @@ export default class MainPage extends Vue {
      itemDesc: fields[0],
      itemPrice: parseFloat(fields[1])
    });
-   console.log(this.cart[0].itemDesc);
+   this.total = this.total + parseFloat(fields[1]) + parseFloat(fields[1]) * 0.06 ;
   }
 }
 
@@ -571,6 +615,14 @@ td{
   display: inline-block;
   font-size: 16px;
 }
+ button[disabled] { 
+      pointer-events: none;
+
+    }
+button:hover { 
+  background-color: #45a049;
+}
+ 
 .price{
   padding-left:20px;
 }

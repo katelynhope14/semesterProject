@@ -2,9 +2,9 @@
   <div id="login">
     <div id = "header"> 
         <h1> KLC Party Store </h1> 
-        <h2>Don't have an account? <router-link to="/signun" replace>Create one!</router-link> </h2>
+        <h2>Don't have an account? <router-link to="/" replace>Create one!</router-link> </h2>
     </div> 
-  <form>
+  <div>
     <label for="email">Email</label>
     <input type="text" id="usrmail" name="email" v-model="userEmail">
 
@@ -14,7 +14,7 @@
         <div class = "message">
             {{message}}
         </div>
-  </form>
+  </div>
   </div>
 </template>
 
@@ -28,14 +28,14 @@ import {FirebaseAuth, UserCredential} from "@firebase/auth-types";
 @Component
 export default class LoginPage extends Vue {
     private message = "";
-    private userEmail;
-    private userPswd
+    private userEmail= "";
+    private userPswd = "";
     readonly $appAuth!: FirebaseAuth;
     
 
-    // get noInput(): boolean {
-    //     return this.userEmail.length === 0 || this.userPswd.length === 0;
-    // }
+    get noInput(): boolean {
+        return this.userEmail.length === 0 || this.userPswd.length === 0;
+    }
 
     authenticate(): void {
         this.$appAuth
@@ -46,6 +46,7 @@ export default class LoginPage extends Vue {
         })
         .catch((err: any) => {
             this.showMessage(`Unable to login ${err}`);
+            console.log(err);
         });
     }
 
