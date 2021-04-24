@@ -32,12 +32,14 @@
         <tbody>
             <label for="no orders" v-if="!orders.length">Your orders will show up here once you have made one</label>
             <tr v-if="orders.length" class = "user">
+                <td>Purchase Date</td>
                 <td>Items</td>
                 <td>Address</td>
                 <td>Payment</td>
                 <td>Total</td>
             </tr>
             <tr v-for="(c, pos) in orders" :key="pos" class = "user">
+                <td> {{c.date}}</td>
                 <td class ="text-block">{{c.items}}</td>
                 <td class ="text-block">{{c.addr}}</td>
                 <td>{{c.card}}</td>
@@ -60,6 +62,7 @@ import {FirebaseFirestore} from "@firebase/firestore-types";
 import {FirebaseAuth, UserCredential} from "@firebase/auth-types"; 
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import { QuerySnapshot } from "@firebase/firestore-types";
+import "firebase/auth";
 
 @Component
 export default class UserPage extends Vue {
@@ -85,6 +88,7 @@ export default class UserPage extends Vue {
         this.canEdit = false;
     }
     mounted(): void {
+        this.$appAuth.setPersistence('local');
         this.uid = this.$appAuth.currentUser?.uid ?? "none";
         this.$appDB
         .collection(`users/${this.uid}/userdata`)
@@ -113,6 +117,7 @@ export default class UserPage extends Vue {
             var currAddr = data.address.split(".");
             if (qds.exists)
                 this.orders.push({
+                date: data.time,
                 items: data.name,
                 addr: data.address,
                 card: data.card,

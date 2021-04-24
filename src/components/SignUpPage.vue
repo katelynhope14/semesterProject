@@ -1,7 +1,6 @@
 <template>
   <div id="login">
     <div id = "header"> 
-        <h1> KLC Party Store </h1> 
         <h2>Already have an account? <router-link to="/login" replace>Sign in!</router-link> </h2>
     </div> 
   <div>
@@ -33,6 +32,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import {FirebaseFirestore} from "@firebase/firestore-types";
 import {FirebaseAuth, UserCredential} from "@firebase/auth-types"; 
+import "firebase/auth";
 
 @Component
 export default class SignUpPage extends Vue {

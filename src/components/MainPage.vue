@@ -286,6 +286,7 @@ import {FirebaseFirestore} from "@firebase/firestore-types";
 import {FirebaseAuth, UserCredential} from "@firebase/auth-types";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import { QuerySnapshot } from "@firebase/firestore-types";
+import "firebase/auth";
 
 @Component 
 export default class MainPage extends Vue {

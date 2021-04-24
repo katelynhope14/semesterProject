@@ -4,7 +4,6 @@
     <h1> KLC Party Store </h1> 
     </div>
     <router-view></router-view>
-    <img alt="Vuelogo" src="./assets/checkoutcart.png">
     <button v-if="userLoggedIn()" @click="doLogout">Logout</button>
   </div>
 </template>
@@ -18,6 +17,7 @@ import SignUpPage from './components/SignUpPage.vue';
 import Checkout from './components/Checkout.vue';
 import UserPage from './components/UserPage.vue'
 import {FirebaseAuth, UserCredential} from "@firebase/auth-types"; 
+import "firebase/auth";
 
 @Component({
   components: {

@@ -24,6 +24,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import {FirebaseFirestore} from "@firebase/firestore-types";
 import {FirebaseAuth, UserCredential} from "@firebase/auth-types"; 
+import "firebase/auth";
 
 @Component
 export default class LoginPage extends Vue {
@@ -48,6 +49,7 @@ export default class LoginPage extends Vue {
             this.showMessage(`Unable to login ${err}`);
             console.log(err);
         });
+        this.$appAuth.setPersistence("SESSION");
     }
 
     showMessage(m: string): void {
