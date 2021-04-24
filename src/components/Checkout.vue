@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Checkout Cart</h1>
+    <img alt="Vuelogo" src="../assets/checkoutcart.png">
     <!-- router link to switch between both pages -->
     <!-- <router-link to="/category" replace>Add New Category</router-link> -->
     <div id="top">
@@ -226,10 +227,12 @@ private total = 0;
     })
     this.address = firstname + " " + lastname + "\n" + streetaddress + "\n" + cityname + ", " + statename + ", " + zipcodenum;
     this.card = "**** **** **** " + cardinfo.substring(12);
+    var date = new Date().toLocaleString('en-US', {dateStyle: "short",timeStyle: "short"});
 
     this.$appDB
         .collection(`users/${this.uid}/orders`)
         .add({
+          time: date,
           name: this.itemString,
           address: this.address,
           card: this.card,
@@ -256,6 +259,8 @@ private total = 0;
 label {
   text-align: left;
   padding-right: 10px;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 input,
@@ -265,9 +270,19 @@ select {
   box-sizing: border-box;
 }
 
-td,
-th {
-  border: 2px solid black;
+th
+ {
+  text-decoration: underline;
+  font-size: 20px;
+  text-align: center;
+  color: rgb(161, 161, 245);
+  font-weight: 300;
+}
+
+td{
+  text-align: center;
+  font-size: 18px;
+  padding: 30px;
 }
 
 table {
