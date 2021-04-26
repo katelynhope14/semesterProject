@@ -17,7 +17,7 @@
           <tbody>
             <tr v-for="(z, pos) in userCart" :key="pos">
               <td>{{ z.itemName }}</td>
-              <td>${{ z.itemDesc }}</td>
+              <td>{{ z.itemDesc }}</td>
               <td>${{ z.itemPrice }}</td>
             </tr>
             <tr>
@@ -235,10 +235,7 @@ export default class MyExpense extends Vue {
       ", " +
       zipcodenum;
     this.card = "**** **** **** " + cardinfo.substring(12);
-    var date = new Date().toLocaleString("en-US", {
-      dateStyle: "short",
-      timeStyle: "short",
-    });
+    var date = new Date().toLocaleString();
     this.$appDB.collection(`users/${this.uid}/orders`).add({
       time: date,
       name: this.itemString,
