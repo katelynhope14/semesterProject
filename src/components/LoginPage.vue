@@ -1,16 +1,17 @@
 <template>
   <div id="login">
+    <img id="balloons" src="./photos/party.jpeg">
     <div id = "header"> 
         <h1> KLC Party Store </h1> 
         <h2>Don't have an account? <router-link to="/" replace>Create one!</router-link> </h2>
     </div> 
-  <div>
+  <div id = "logInBoxes">
     <label for="email">Email</label>
     <input type="text" id="usrmail" name="email" v-model="userEmail">
 
     <label for="pswd">Password</label>
     <input type="password" id="pswd" name="password" v-model="userPswd">
-    <button :disabled="noInput" @click="authenticate">Sign In</button>
+    <button id = "signUpBtn" :disabled="noInput" @click="authenticate">Sign In</button>
         <div class = "message">
             {{message}}
         </div>
@@ -68,7 +69,13 @@ export default class LoginPage extends Vue {
 </script>
 
 <style scoped>
- /* Style inputs */
+/* Styles the image */
+ #balloons{
+  height: 10%;
+  width: 100%;
+}
+
+ /* Styles the user inputs */
   input, select {
   width: 100%;
   padding: 12px 20px;
@@ -79,12 +86,65 @@ export default class LoginPage extends Vue {
   box-sizing: border-box;
 }
 
+/*Styles KLC title */
+h1{
+ font-family: Georgia, 'Times New Roman', Times, serif;
+ font-size: 85px;
+ border:5px solid rgb(248, 209, 158);
+ border-radius: .5em;
+ color:rgb(175, 175, 175);
+ background-color: rgb(250, 195, 122) ;
+ position: absolute;
+ top: 40%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
+
+/* Style the h2 element */ 
 h2{
-    align-items: center;
+  color: rgb(148, 148, 148);
+  background-color: rgb(248, 209, 158);
+  border-radius: .2em;
+  font-size: 35px;
+  align-items: center;
+  font-weight: 800;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Styles the Login Boxes */
+#logInBoxes{
+ font-family: Didot, serif;
+  background-color: rgb(250, 223, 255);
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*Styles the Sign Up Button */
+#signUpBtn{
+  font-family: Didot, serif;
+  background-color: rgb(163, 158, 158);
+  font-size: 25px;
+  color: black;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Add a background color to the submit button on mouse-over */
-button:hover {
+#signUpBtn:hover {
   background-color: #45a049;
 } 
+/*Styles the input box labels */
+label{
+  font-family: Didot, serif;
+  font-size: 22px;
+  text-align: center;
+  font-weight: 800;
+}
 </style>

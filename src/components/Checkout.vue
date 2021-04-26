@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <h1>Checkout Cart</h1>
-    <img alt="Vuelogo" src="../assets/checkoutcart.png">
-    <!-- router link to switch between both pages -->
-    <!-- <router-link to="/category" replace>Add New Category</router-link> -->
+  <div id="entire">
+    <img id="fun" src="./photos/funner.png" />
+    <h1>KLC Party Store</h1>
+    <h2>Checkout Cart</h2>
+    <img id="cart" alt="Vuelogo" src="../assets/checkoutcart.png" />
+
     <div id="top">
-    <section id="summary">
-        <h2>Order Summary</h2>
+      <section id="summary">
+        <h3>Order Summary</h3>
         <table class="center-of-page">
           <thead>
             <th>Item Name</th>
@@ -22,18 +23,15 @@
             <tr>
               <td></td>
               <td></td>
-              <td>Total: {{total.toFixed(2)}} </td>
+              <td>Total: {{ total.toFixed(2) }}</td>
             </tr>
           </tbody>
         </table>
-      </section> 
-
-
+      </section>
 
       <section>
-        <h2>Shipping Info</h2>
+        <h3>Shipping Info</h3>
         <div id="firstbox">
-          <!-- for using our nth-childs -->
           <label for="first">First Name</label>
           <input
             type="text"
@@ -77,16 +75,32 @@
             id="zipcode"
             v-model="zipcodenum"
           /><br /><br />
-          <!-- for saving category information -->
-          <button id="saveButton" v-on:click="saveInfo(firstname, lastname, streetaddress, cityname, statename, zipcodenum, cardinfo, expdate, securitycode, phonenumber)">Save and Checkout</button>
+
+          <button
+            id="saveButton"
+            v-on:click="
+              saveInfo(
+                firstname,
+                lastname,
+                streetaddress,
+                cityname,
+                statename,
+                zipcodenum,
+                cardinfo,
+                expdate,
+                securitycode,
+                phonenumber
+              )
+            "
+          >
+            Save and Checkout
+          </button>
         </div>
       </section>
 
-
- <section>
-        <h2>Payment Method</h2>
+      <section>
+        <h3>Payment Method</h3>
         <div id="secondbox">
-          <!-- for using our nth-childs -->
           <label for="credit">Credit Card Information</label>
           <input
             type="number"
@@ -116,33 +130,8 @@
             id="phone"
             v-model="phonenumber"
           /><br /><br />
-          
-          <!-- for saving category information -->
         </div>
       </section>
-
-
-    
-
-     <!-- <section id= "expenses"> 
-<h3> Payment Method </h3>
-<table class="center-of-page">
-    <thead>
-        <th>Credit Card Number</th>
-        <th> Exp. (MM/YY) </th>
-        <th> Security Code</th>
-        <th> Phone Number</th>
-    </thead>
-    <tbody>
-        <tr v-for ="(z,pos) in allExpenses" :key="pos">
-            <td> ${{z.amount.toFixed(2)}}</td>
-            <td>  {{z.where}} </td>
-            <td> {{z.category}}  </td>
-            <td> {{z.date}} </td>
-        </tr>
-    </tbody>
-</table> 
-</section> -->
     </div>
   </div>
 </template>
@@ -152,159 +141,206 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { FirebaseFirestore } from "@firebase/firestore-types";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import { QuerySnapshot } from "@firebase/firestore-types";
-
 import { FirebaseAuth } from "@firebase/auth-types";
 import "firebase/auth";
-
 @Component
 //BudgetCategory
 export default class MyExpense extends Vue {
   readonly $appDB!: FirebaseFirestore;
 
-//MAKE SURE TO CREATE UPDATE AND DELETE BUTTONS 
-//for shipping info
-private firstname = "";
-private lastname = "";
-private streetaddress = "";
-private cityname = "";
-private statename = "";
-private zipcodenum = "";
-
-//for card information
-private cardinfo="";
-private expdate="";
-private securitycode= "";
-private phonenumber= "";
-private userCart:any[] = [];
-private itemDetails: any [] = [];
-private docIDs: any[] = [];
-private itemString = "";
-private address = "";
-private card = "";
-private total = 0;
-
+  //for shipping info
+  private firstname = "";
+  private lastname = "";
+  private streetaddress = "";
+  private cityname = "";
+  private statename = "";
+  private zipcodenum = "";
+  //for card information
+  private cardinfo = "";
+  private expdate = "";
+  private securitycode = "";
+  private phonenumber = "";
+  private userCart: any[] = [];
+  private itemDetails: any[] = [];
+  private docIDs: any[] = [];
+  private itemString = "";
+  private address = "";
+  private card = "";
+  private total = 0;
   readonly $appAuth!: FirebaseAuth;
   private uid = "none";
   private userDocID = "";
-
   //adding the expenses of current user
-  
+
   //saveInfo (fname, lname, add, newcity, newstate, newzip, credit, expdate, security, phonenum) {
   //}
-
   //adding just the name and limit of the current user
   mounted(): void {
     this.uid = this.$appAuth.currentUser?.uid ?? "none";
-    setTimeout(() => {  console.log("World!"); }, 2000);
-
+    setTimeout(() => {
+      console.log("World!");
+    }, 2000);
     this.$appDB
-        .collection(`users/${this.uid}/cart`)
-        .onSnapshot((qs: QuerySnapshot) => {
-        this.userCart.splice(0);  // remove old data
+      .collection(`users/${this.uid}/cart`)
+      .onSnapshot((qs: QuerySnapshot) => {
+        this.userCart.splice(0); // remove old data
         qs.forEach((qds: QueryDocumentSnapshot) => {
-            const data = qds.data();
-            this.docIDs.push(qds.id);
-            if (qds.exists)
-                this.userCart.push({
-                  itemName: data.name,
-                  itemDesc: data.desc,
-                  itemPrice: parseFloat(data.price)
+          const data = qds.data();
+          this.docIDs.push(qds.id);
+          if (qds.exists)
+            this.userCart.push({
+              itemName: data.name,
+              itemDesc: data.desc,
+              itemPrice: parseFloat(data.price),
             });
-            console.log(this.userCart);
-            this.total = this.total + parseFloat(data.price) + parseFloat(data.price) * 0.06 ;
+          console.log(this.userCart);
+          this.total =
+            this.total + parseFloat(data.price) + parseFloat(data.price) * 0.06;
         });
-    });
+      });
   }
-
-
-  saveInfo(firstname, lastname, streetaddress, cityname, statename, zipcodenum, cardinfo, expdate, securitycode, phonenumber): void{
+  saveInfo(
+    firstname,
+    lastname,
+    streetaddress,
+    cityname,
+    statename,
+    zipcodenum,
+    cardinfo,
+    expdate,
+    securitycode,
+    phonenumber
+  ): void {
     this.uid = this.$appAuth.currentUser?.uid ?? "none";
     this.docIDs.forEach((id) => {
-      this.$appDB.collection(`users/${this.uid}/cart`).doc(id).delete();
-    })
+      this.$appDB
+        .collection(`users/${this.uid}/cart`)
+        .doc(id)
+        .delete();
+    });
     this.userCart.forEach((item) => {
-      this.itemString = this.itemString + item.itemName + " - " + item.itemDesc + "\n";
-    })
-    this.address = firstname + " " + lastname + "\n" + streetaddress + "\n" + cityname + ", " + statename + ", " + zipcodenum;
+      this.itemString =
+        this.itemString + item.itemName + " - " + item.itemDesc + "\n";
+    });
+    this.address =
+      firstname +
+      " " +
+      lastname +
+      "\n" +
+      streetaddress +
+      "\n" +
+      cityname +
+      ", " +
+      statename +
+      ", " +
+      zipcodenum;
     this.card = "**** **** **** " + cardinfo.substring(12);
-    var date = new Date().toLocaleString('en-US', {dateStyle: "short",timeStyle: "short"});
-
-    this.$appDB
-        .collection(`users/${this.uid}/orders`)
-        .add({
-          time: date,
-          name: this.itemString,
-          address: this.address,
-          card: this.card,
-          price: this.total})
+    var date = new Date().toLocaleString("en-US", {
+      dateStyle: "short",
+      timeStyle: "short",
+    });
+    this.$appDB.collection(`users/${this.uid}/orders`).add({
+      time: date,
+      name: this.itemString,
+      address: this.address,
+      card: this.card,
+      price: this.total,
+    });
     this.docIDs.splice(0);
     this.userCart.splice(0);
     this.total = 0;
     this.$router.push("/user");
-
-
   }
 }
 </script>
 
 <style scoped>
+#fun {
+  height: 5%;
+  width: 100%;
+}
+
+#cart {
+  height: 10%;
+  width: 5%;
+  align-content: center;
+}
 #top {
   display: inline-block;
   text-align: right;
-  border: 2px solid hsl(120, 22%, 63%);
+  border: 5px solid hsl(120, 22%, 63%);
   border-radius: 1em;
   padding: 1em;
 }
-
 label {
+  font-family: Georgia, "Times New Roman", Times, serif;
   text-align: left;
   padding-right: 10px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 300;
 }
-
 input,
 select {
   height: 10%;
   width: 65%;
   box-sizing: border-box;
 }
-
-th
- {
+th {
   text-decoration: underline;
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
-  color: rgb(161, 161, 245);
+  color: hsl(120, 39%, 65%);
   font-weight: 300;
 }
-
-td{
+td {
   text-align: center;
   font-size: 18px;
-  padding: 30px;
+  padding: 10px;
 }
-
 table {
   align-content: center;
 }
-
 #top {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-areas: "firstbox" "secondbox";
 }
-
 h1 {
-    color:cornflowerblue
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 85px;
+  border: 5px solid rgb(248, 209, 158);
+  border-radius: 0.5em;
+  color: rgb(175, 175, 175);
+  background-color: rgb(250, 195, 122);
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 h2 {
+  color: rgb(148, 148, 148);
+  background-color: rgb(248, 209, 158);
+  border-radius: 0.2em;
+  font-size: 45px;
+  text-align: center;
+  font-weight: 800;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+h3 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 30px;
   text-align: left;
-  color: rgb(161, 161, 245)
+  color: hsl(120, 39%, 65%);
+  font-size: bold;
 }
 
-
-button {
+#saveButton {
   text-align: right;
+  font-family: Didot, serif;
+  font-size: 20px;
 }
 </style>
